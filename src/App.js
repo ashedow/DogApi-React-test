@@ -28,8 +28,8 @@ export default class App extends Component {
     const { getBreed } = this.props
 
     axios.get('https://dog.ceo/api/breeds/list')
-      .then(res => {
-        getBreed(res.data.message)
+      .then(response => {
+        (response.data.message)
         this.setState({
           isDone: true
         })
