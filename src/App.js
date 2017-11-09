@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, {Component} from 'react';
 import SearchBar from './components/SearchBar';
 import ToolBar from './components/ToolBar';
@@ -5,28 +6,88 @@ import ActiveDog from './components/ActiveDog';
 import DogList from './components/DogList';
 
 export default class App extends Component {
-    constructor(props) {
-        super(props);
+      constructor(props){
+        super(props)
         this.state = {
-            searchValue: '',
-            dogs: [],
-            filteredDogs: null,
-            sortBy: false,
-            order: false
-        };
-        this.loadDogs();
+            isDone: false
+        }
     }
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         searchValue: '',
+    //         dogs: [],
+    //         filteredDogs: null,
+    //         sortBy: false,
+    //         order: false
+    //     };
+    //     this.loadDogs();
+    // }
 
-    loadDogs() {
-        fetch('https://dog.ceo/api/breeds/list/all')
-            .then(response => {
-                return response.json().then(data => {
-                    this.setState.dogs = data;
-                    this.setState.filteredDogs = data;
-                    this.selectDog(data[0]);
-                });
-            })
-    }
+    componentDidMount() {
+    const { getBreed } = this.props
+
+    axios.get('https://dog.ceo/api/breeds/list')
+      .then(res => {
+        getBreed(res.data.message)
+        this.setState({
+          isDone: true
+        })
+      })
+
+      .catch(err => {
+        this.setState({
+          isDone: true
+        })
+        throw err
+      })
+  }
+
+    // loadDogs() {
+    //     fetch('https://dog.ceo/api/breeds/list/all')
+    //         .then(response => {
+    //             return response.json().then(({message: dogs}) => this.setState({dogs}))
+
+    //     // fetch('https://dog.ceo/api/breeds/list/all', {
+    //     //     method: 'GET',
+    //     //     headers: {
+    //     //         Accept: 'application/json',
+    //     //     },
+    //     // },
+    //     // ).then(response => {
+    //     //     if (response.ok) {
+    //     //         response.json().then(data => {
+    //     //             this.setState.dogs = data;
+    //     //             this.setState.filteredDogs = data;
+    //     //             this.selectDog(data[0]);
+    //     //         // response.json().then(json => {
+    //     //         //     console.log(json);
+    //     //         });
+    //     //     }
+    //     // });
+
+
+
+    //     // fetch('https://dog.ceo/api/breeds/list/all')
+    //     //     .then(response => {
+    //     //         return response.json().then(data => {
+    //     //             this.setState.dogs = data;
+    //     //             this.setState.filteredDogs = data;
+    //     //             this.selectDog(data[0]);
+    //     //         });
+    //     //     })
+
+
+    //     // fetch('https://dog.ceo/api/breeds/list/all')
+    //     //     .then((response) => {
+    //     //         return response.json()
+    //     //     })
+    //     //     .then((json) =>  this.setState({
+    //     //         data: json,
+    //     //         searchData: json
+    //     //     }))
+    //     //     .catch((error) =>  console.log(error))            
+    // }
 
     sortByName = () => {
         this.setState.order = !this.state.order;

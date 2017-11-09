@@ -8,7 +8,7 @@ export default class ActiveDog extends Component {
 
         return (
             <div className="thumbnail">
-                <img src={`https://dog.ceo/api/breed/${this.props.dog}/images`}/>
+                <img src={`https://dog.ceo/api/breed/${this.props.dog}/images`} alt="dogPicture"/>
                 <div className="thumbnail-caption">
                     <h3>{this.props.dog.name}</h3>
                 </div>

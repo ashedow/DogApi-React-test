@@ -9,7 +9,7 @@ export default class DogData extends Component {
         return (
             <tr onClick={this.selectDog}>
                 <td>
-                    <img src={`https://dog.ceo/api/breed/${this.props.dog}/images`} className="dog-image"/>
+                    <img src={`https://dog.ceo/api/breed/${this.props.dog}/images`} className="dog-image" alt="dogPicture"/>
                 </td>
                 <td>{this.props.dog.name}</td>
             </tr>
