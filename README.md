@@ -1,5 +1,7 @@
-##Little app using [API](https://dog.ceo/dog-api)
-###React. React-dom. React-create-app
+#Little app using [Dog API](https://dog.ceo/dog-api)
+
+##React. React-dom. React-create-app
+
 ##Installation:
 * `npm install`
 * `npm start`
